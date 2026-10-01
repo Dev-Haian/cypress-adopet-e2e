@@ -6,7 +6,7 @@
 
 Testes automatizados com **Cypress** no [Adopet](https://adopet-tau.vercel.app), um site de adoção de animais usado para estudo.
 
-Começou como projeto de curso. Depois eu reorganizei: comandos reutilizáveis, testes orientados a dados, nenhuma senha no código e execução automática no GitHub Actions.
+Começou como projeto de curso. Depois eu reorganizei: comandos reutilizáveis, testes orientados a dados, seletores conferidos no HTML real, nenhuma senha no código e execução automática no GitHub Actions.
 
 ---
 
@@ -14,17 +14,16 @@ Começou como projeto de curso. Depois eu reorganizei: comandos reutilizáveis, 
 
 | Arquivo | Cenários |
 | --- | --- |
-| `cadastro.cy.js` | campos obrigatórios · cadastro com sucesso · **cadastro em massa** a partir de uma fixture |
-| `login.cy.js` | campos obrigatórios · erro da API simulado com `cy.intercept` · cadastro seguido de login |
+| `cadastro.cy.js` | campos obrigatórios · **formulário válido para cada usuário** de uma fixture (teste orientado a dados) |
+| `login.cy.js` | campos obrigatórios · formulário preenchido não mostra erro · navegação login → cadastro |
 | `api-mensagens.cy.js` | status 200, tempo de resposta e formato do retorno da API |
 
 ## Técnicas usadas
 
 - **Comandos customizados** (`cy.login`, `cy.cadastrar`, `cy.abrirLogin`): o teste lê como uma frase e, se a tela mudar, a correção é feita num lugar só.
 - **Testes orientados a dados:** o mesmo cenário roda para cada usuário de `fixtures/usuarios.json`.
-- **`cy.intercept`:** simula a resposta do servidor para testar como a tela reage a um erro, sem depender do back-end.
-- **Seletores `data-test`:** atributos feitos para teste, que não quebram quando o texto ou o CSS mudam.
-- **Dados únicos por execução:** e-mails com timestamp, para o teste poder rodar várias vezes.
+- **Seletores estáveis:** `id` dos campos e texto dos botões, conferidos no HTML da aplicação, em vez de classes CSS que mudam com o layout.
+- **Validação positiva e negativa:** o mesmo conjunto de mensagens é usado para provar que aparece quando deve e some quando o formulário está correto.
 - **Segredos fora do código:** o token da API vem de variável de ambiente.
 
 ## Estrutura
@@ -50,6 +49,10 @@ npm test          # modo headless, como no CI
 ```
 
 Para o teste de API, copie `cypress.env.example.json` para `cypress.env.json` e coloque um token válido. Sem token, esse teste é pulado e os outros rodam normalmente.
+
+---
+
+> Próximo passo: usar `cy.intercept` para simular respostas do servidor e testar como a tela reage a erros da API.
 
 ---
 
