@@ -1,0 +1,7 @@
+{
+  "usuarios": [
+    { "nome": "Ana Souza", "email": "ana.souza@teste.dev", "senha": "Senha12345" },
+    { "nome": "Bruno Lima", "email": "bruno.lima@teste.dev", "senha": "Senha123456" },
+    { "nome": "Carla Mendes", "email": "carla.mendes@teste.dev", "senha": "Senha1234567" }
+  ]
+}

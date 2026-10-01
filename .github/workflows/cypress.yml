@@ -1,0 +1,29 @@
+name: Testes Cypress
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  cypress:
+    name: E2E Adopet
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rodar testes Cypress
+        uses: cypress-io/github-action@v6
+        env:
+          CYPRESS_ADOPET_TOKEN: ${{ secrets.CYPRESS_ADOPET_TOKEN }}
+
+      - name: Guardar prints das falhas
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 7
