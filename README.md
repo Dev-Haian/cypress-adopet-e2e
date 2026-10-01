@@ -56,4 +56,4 @@ Para o teste de API, copie `cypress.env.example.json` para `cypress.env.json` e 
 
 ---
 
-Feito por **Haian Vilas Boas**, QA. [LinkedIn](https://www.linkedin.com/in/haian-vilas-boas-806647221/) · [Portfólio](https://haianportifolio.framer.website/)
+Feito por **Haian Vilas Boas**, QA. [LinkedIn](https://www.linkedin.com/in/haian-vilas-boas-806647221/) · [Portfólio](https://dev-haian.github.io/)
